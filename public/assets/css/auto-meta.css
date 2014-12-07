@@ -4,3 +4,13 @@
 /**
  * Created by johnuiterwyk on 30/10/14.
  */
+body {
+  margin-top: 10px;
+}
+.Logo {
+  text-align: center;
+}
+.auto-meta-document {
+  padding: 10px;
+  min-width: 480px;
+}
