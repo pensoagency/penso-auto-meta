@@ -92,7 +92,7 @@ AutoMeta.prototype.analyseDoc = function(event)
         return b.frequency - a.frequency;
     });
 
-    var html = "Suggested Keywords:<br/><ul class='list-group'>";
+    var html = "<p class='suggest-list'>Suggested Keywords:</p><br/><ul class='list-group'>";
     for(i =0;i<Math.min(10,sorted.length);i++)
     {
         html += "<li class='list-group-item'>"+"("+Math.round(sorted[i].frequency/(sorted[0].frequency +1)*100)/100+") "+sorted[i].word+"</li>";
@@ -112,5 +112,23 @@ AutoMeta.prototype.removeStopWords = function(words)
 {
 
 };
+
+
+$(function(){
+	pasteSelection();
+});
+
+function pasteSelection() {
+	chrome.tabs.query({active:true, windowId: chrome.windows.WINDOW_ID_CURRENT},
+		function(tab) {
+			chrome.tabs.sendMessage(tab[0].id, {method: "getSelection"},
+				function(response){
+					var text = document.getElementById('select-text');
+					text.innerHTML = response.data;
+				});
+		});
+}
+
+
 
 

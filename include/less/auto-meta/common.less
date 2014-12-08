@@ -3,15 +3,52 @@
  */
 body{
 
-  margin-top: 10px;
+  margin: 0;
+  padding: 0;
+
+  padding-bottom: 10px;
 
 }
 
-.Logo{
-  text-align: center;
+.header{
+  background: @penso-blue;
+  margin-bottom: 10px;
+
+  .logo{
+    padding: 5px 15px;
+  }
 }
 
 .auto-meta-document{
   padding: 10px;
-  min-width: 480px;
+  min-width: 380px;
+  margin: auto;
+}
+
+.run-analysis{
+  margin: 10px 0;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: @penso-blue;
+  border-radius: 5px;
+  color: @white;
+  width: 190px;
+  text-align: center;
+  float: left;
+  font-weight: 100;
+}
+
+.suggest-list{
+  margin: 10px 0;
+  padding-top: 20px;
+  border-top: 1px solid @grey;
+}
+
+.list-group{
+  margin: 0;
 }
