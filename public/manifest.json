@@ -19,6 +19,8 @@
 
 	"permissions": [
 		"tabs",
+		"contextMenus",
+		"bookmarks",
 		"<all_urls>"
 	],
 
@@ -29,6 +31,13 @@
 			"run_at": "document_start",
 			"all_frames": true
 		}
-	]
+	],
+
+	"background": {
+		"matches": ["<all_urls>"],
+		"scripts": ["jquery-2.1.1.min.js", "background.js"],
+		"matches": ["http://*/*", "https://*/*"],
+		"persistent": true
+	}
 
 }

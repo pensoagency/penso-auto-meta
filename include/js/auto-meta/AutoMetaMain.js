@@ -50,6 +50,8 @@ AutoMeta.prototype.analyseDoc = function(event)
     var terms = {};
     var i;
 
+	event.preventDefault();
+
     function Term(word)
     {
         this.word = word;
@@ -114,10 +116,6 @@ AutoMeta.prototype.removeStopWords = function(words)
 };
 
 
-$(function(){
-	pasteSelection();
-});
-
 function pasteSelection() {
 	chrome.tabs.query({active:true, windowId: chrome.windows.WINDOW_ID_CURRENT},
 		function(tab) {
@@ -125,9 +123,17 @@ function pasteSelection() {
 				function(response){
 					var text = document.getElementById('select-text');
 					text.innerHTML = response.data;
+					$('.run-analysis').click();
 				});
 		});
 }
+
+$(function(){
+	pasteSelection();
+});
+
+
+
 
 
 
