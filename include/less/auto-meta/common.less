@@ -2,5 +2,60 @@
  * Created by johnuiterwyk on 30/10/14.
  */
 body{
-
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
 }
+
+.header{
+  background: @penso-blue;
+  margin-bottom: 10px;
+
+  .logo{
+    padding: 5px 15px;
+  }
+}
+
+.auto-meta-document{
+  padding: 10px;
+  min-width: 380px;
+  margin: auto;
+  width:100%;
+  min-height: 189px;
+}
+
+.run-analysis{
+  margin: 10px 0;
+  border-color: @brand-primary;
+  background: @brand-primary;
+
+  &:hover{
+    border-color: darken(@brand-primary, 10%);
+    background: darken(@brand-primary, 10%);
+  }
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: @penso-blue;
+  border-radius: 5px;
+  color: @white;
+  width: 190px;
+  text-align: center;
+  float: left;
+  font-weight: 100;
+}
+
+.suggest-list{
+  margin: 10px 0;
+  padding-top: 20px;
+  border-top: 1px solid @grey;
+}
+
+.list-group{
+  margin: 0;
+}
+
