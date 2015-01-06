@@ -2,12 +2,9 @@
  * Created by johnuiterwyk on 30/10/14.
  */
 body{
-
   margin: 0;
   padding: 0;
-
   padding-bottom: 10px;
-
 }
 
 .header{
@@ -23,10 +20,19 @@ body{
   padding: 10px;
   min-width: 380px;
   margin: auto;
+  width:100%;
+  min-height: 189px;
 }
 
 .run-analysis{
   margin: 10px 0;
+  border-color: @brand-primary;
+  background: @brand-primary;
+
+  &:hover{
+    border-color: darken(@brand-primary, 10%);
+    background: darken(@brand-primary, 10%);
+  }
 }
 
 .list-group-item {
@@ -52,3 +58,4 @@ body{
 .list-group{
   margin: 0;
 }
+

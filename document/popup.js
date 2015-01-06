@@ -1,17 +1,37 @@
+//
+//http://stackoverflow.com/questions/14094697/javascript-how-to-create-new-div-dynamically-change-it-move-it-modify-it-in
+//
+
+var e = window.event;
 var div = document.createElement('div');
 document.body.appendChild(div);
-div.style.left = '200px';
-div.style.top = '200px';
-div.className = 'popup-penso-auto-meta';
-div.id = 'popup-box';
 div.innerHTML = '<div class="popup-penso-auto-meta" style="position: absolute; left:200px; top: 300px; min-width: 380px; display: block; height: 200px; box-shadow: 0px 0px 10px #888888; background: #ffffff">\
-					<div class="">\
+					<div class="list-words">\
 					</div>\
 				</div>';
 
+var selectedText = localStorage.dataAutoMeta;
 
+function pasteSelection() {;
 
-function AutoMeta()
+	//chrome.tabs.query({active:true, windowId: chrome.windows.WINDOW_ID_CURRENT},
+	//	function(tab) {
+	//		chrome.tabs.sendMessage(tab[0].id, {method: "getSelection"},
+	//			function(response){
+	//				var text = document.getElementById('select-text');
+	//				selectedText = response.data;
+	//				$('.run-analysis').click();
+	//			});
+	//	});
+
+}
+
+AutoMetaPopup.prototype.init = function()
+{
+	this.analyseDoc(this);
+};
+
+function AutoMetaPopup()
 {
 	this.stopWords = ["a", "about", "above", "above", "across", "after", "afterwards", "again", "against", "all",
 		"almost", "alone", "along", "already", "also","although","always","am","among", "amongst", "amoungst",
@@ -43,10 +63,10 @@ function AutoMeta()
 }
 
 
-AutoMeta.prototype.analyseDoc = function(event)
-{
-	var $doc = $('.auto-meta-document');
-	var text = $doc.val();
+AutoMetaPopup.prototype.analyseDoc = function(event)
+{console.log(selectedText);
+	//var $doc = $('.auto-meta-document');
+	var text = selectedText;//$doc.val()
 	var cleanText = this.removePunctuation(text);
 	var words = cleanText.split(" ");
 	var terms = {};
@@ -96,21 +116,31 @@ AutoMeta.prototype.analyseDoc = function(event)
 		return b.frequency - a.frequency;
 	});
 
+
 	var html = "<p class='suggest-list'>Suggested Keywords:</p><br/><ul class='list-group'>";
 	for(i =0;i<Math.min(10,sorted.length);i++)
 	{
 		html += "<li class='list-group-item'>"+"("+Math.round(sorted[i].frequency/(sorted[0].frequency +1)*100)/100+") "+sorted[i].word+"</li>";
+		console.log(Math.round(sorted[i].frequency/(sorted[0].frequency +1)*100)/100+") "+sorted[i].word);
 	}
 	html+="</ul>";
-	$('.popup-penso-auto-meta').html(html);
+	$('.list-words').html(html);
+
 
 };
 
-AutoMeta.prototype.removePunctuation = function(text)
-{
+AutoMetaPopup.prototype.removePunctuation = function(text)
+{console.log("3");
 	return text.replace(/[^\w\s]|_/g, "")
 		.replace(/\s+/g, " ");
 };
 
-var autometa = new AutoMeta();
-autometa.analyseDoc();
+
+
+(function(){
+
+	pasteSelection();
+	var popup = new AutoMetaPopup();
+	popup.init();
+
+}());
